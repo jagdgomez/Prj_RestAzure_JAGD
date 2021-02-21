@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="PrjRstAzure_JAGD" />
+        <module name="Prj_RestAzure_JAGD" />
       </profile>
     </annotationProcessing>
   </component>
