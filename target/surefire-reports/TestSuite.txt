@@ -1,0 +1,18 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 13.103 s <<< FAILURE! - in TestSuite
+Test_Creat_User_Already_Exist(UserTests)  Time elapsed: 2.318 s  <<< FAILURE!
+java.net.MalformedURLException: For input string: "9000v1"
+	at UserTests.Test_Creat_User_Already_Exist(UserTests.java:18)
+Caused by: java.lang.NumberFormatException: For input string: "9000v1"
+	at UserTests.Test_Creat_User_Already_Exist(UserTests.java:18)
+
+ATest_PING_ENDPOINT(MiscTests)  Time elapsed: 7.944 s  <<< FAILURE!
+java.net.ConnectException: Connection refused: connect
+	at MiscTests.ATest_PING_ENDPOINT(MiscTests.java:19)
+
+BTest_HomePage_Response(MiscTests)  Time elapsed: 4.026 s  <<< FAILURE!
+java.net.ConnectException: Connection refused: connect
+	at MiscTests.BTest_HomePage_Response(MiscTests.java:32)
+
