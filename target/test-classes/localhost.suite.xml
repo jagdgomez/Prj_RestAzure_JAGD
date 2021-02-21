@@ -1,17 +1,16 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="LocalExecution" thread-count="2" parallel="tests">
+<suite name="local host Execution" thread-count="1" parallel="tests">
 
-    <parameter name="baseUrl" value="https://api-cofee-testing.herokuapp.com"></parameter>
+    <parameter name="baseUrl" value="http://localhost:9000"></parameter>
 
     <test name="UserTests">
         <classes>
             <class name="UserTests"></class>
         </classes>
-
     </test>
 
-    <test name="Misc">
+    <test name="MiscelaneosTest">
         <classes>
             <class name="MiscTests"></class>
         </classes>

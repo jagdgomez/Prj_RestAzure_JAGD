@@ -12,10 +12,10 @@ public class BaseTest {
 
     @Parameters("baseUrl")
     @BeforeMethod
-    public void setup(@Optional("http://localhost:9000") String baseUrl ) {
+    public void setup(@Optional("https://api-coffee-testing.herokuapp.com") String baseUrl ) {
 
         this.baseUrl = baseUrl;
-        baseRequest = given().headers("User-Agent","Mi user Agent");
+        baseRequest = given().headers("User-Agent","Johnny's user Agent");
 
     }
 }

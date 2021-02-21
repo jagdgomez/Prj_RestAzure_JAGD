@@ -1,25 +1,46 @@
 import org.testng.annotations.Test;
 import pojo.User;
+import helpers.DataHelper;
 
-import static io.restassured.RestAssured.given;
+import static helpers.DataHelper.generateRandomEmail;
 import static org.hamcrest.core.IsEqual.equalTo;
 
-public class UserTests {
-    private static String baseUrl="http://localhost:9000";
-    private static String resourcePath="v1/user";
+public class UserTests extends BaseTest {
+   /* removed to use parameter from BaseTest
+   private static String baseUrl="https://api-coffee-testing.herokuapp.com";*/
+
+    private static String resourcePath="/v1/user";
+
+    /*path de aqui es: https://api-coffee-testing.herokuapp.com/v1/user/register"*/
 
     @Test
-    public void Test_Creat_User_Already_Exist(){
+    public void NegativeTest_Creating_User_Already_Exist(){
 
         User user = new User("Mauricio","pablo@test.com","castro");
 
-        given().body(user)
+        baseRequest
+                .body(user)
                 .when()
                 .post(String.format("%s%s/register",baseUrl,resourcePath))
                 .then()
                 .body("message", equalTo("User already exists"))
                 .and()
                 .statusCode(406);
+    }
+    @Test
+    public void Test_Create_User_Successful(){
+
+        User user = new User("Johnny",generateRandomEmail(),"gomez");
+        System.out.println("Email Generated: "+ user.getEmail());
+
+        baseRequest
+                .body(user)
+                .when()
+                .post(String.format("%s%s/register",baseUrl,resourcePath))
+                .then()
+                .body("message", equalTo("Successfully registered"))
+                .and()
+                .statusCode(200);
     }
 }
 
