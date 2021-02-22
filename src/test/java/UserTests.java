@@ -1,6 +1,5 @@
 import org.testng.annotations.Test;
 import pojo.User;
-import helpers.DataHelper;
 
 import static helpers.DataHelper.generateRandomEmail;
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -32,6 +31,7 @@ public class UserTests extends BaseTest {
 
         User user = new User("Johnny",generateRandomEmail(),"gomez");
         System.out.println("Email Generated: "+ user.getEmail());
+        System.out.println("Request to: " + String.format("%s%s/register",baseUrl,resourcePath));
 
         baseRequest
                 .body(user)
@@ -39,6 +39,21 @@ public class UserTests extends BaseTest {
                 .post(String.format("%s%s/register",baseUrl,resourcePath))
                 .then()
                 .body("message", equalTo("Successfully registered"))
+                .and()
+                .statusCode(200);
+    }
+
+    @Test
+    public void Test_login_User_Successful(){
+
+        User user = new User("Johnny","jagdtest@test.com","gomez");
+        System.out.println("Request to: " + String.format("%s%s/login",baseUrl,resourcePath));
+        baseRequest
+                .body(user)
+                .when()
+                .post(String.format("%s%s/login",baseUrl,resourcePath))
+                .then()
+                .body("message", equalTo("User signed in"))
                 .and()
                 .statusCode(200);
     }
