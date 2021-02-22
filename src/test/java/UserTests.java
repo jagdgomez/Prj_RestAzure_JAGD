@@ -16,15 +16,16 @@ public class UserTests extends BaseTest {
     public void NegativeTest_Creating_User_Already_Exist(){
 
         User user = new User("Mauricio","pablo@test.com","castro");
-
+        System.out.println("Already Created User: "+ user.getEmail());
+        System.out.println("Request to: " + String.format("%s%s/register",baseUrl,resourcePath));
         baseRequest
                 .body(user)
                 .when()
-                .post(String.format("%s%s/register",baseUrl,resourcePath))
+                    .post(String.format("%s%s/register",baseUrl,resourcePath))
                 .then()
-                .body("message", equalTo("User already exists"))
+                    .body("message", equalTo("User already exists"))
                 .and()
-                .statusCode(406);
+                    .statusCode(406);
     }
     @Test
     public void Test_Create_User_Successful(){
@@ -36,26 +37,27 @@ public class UserTests extends BaseTest {
         baseRequest
                 .body(user)
                 .when()
-                .post(String.format("%s%s/register",baseUrl,resourcePath))
+                    .post(String.format("%s%s/register",baseUrl,resourcePath))
                 .then()
-                .body("message", equalTo("Successfully registered"))
+                    .body("message", equalTo("Successfully registered"))
                 .and()
-                .statusCode(200);
+                    .statusCode(200);
     }
 
     @Test
     public void Test_login_User_Successful(){
 
         User user = new User("Johnny","jagdtest@test.com","gomez");
+        System.out.println ("Login User: "+ user.getEmail());
         System.out.println("Request to: " + String.format("%s%s/login",baseUrl,resourcePath));
         baseRequest
                 .body(user)
                 .when()
-                .post(String.format("%s%s/login",baseUrl,resourcePath))
+                    .post(String.format("%s%s/login",baseUrl,resourcePath))
                 .then()
-                .body("message", equalTo("User signed in"))
+                    .body("message", equalTo("User signed in"))
                 .and()
-                .statusCode(200);
+                    .statusCode(200);
     }
 }
 

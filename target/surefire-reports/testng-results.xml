@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="3" passed="3">
+<testng-results skipped="0" failed="0" ignored="0" total="5" passed="5">
   <reporter-output>
   </reporter-output>
-  <suite name="heroku Execution" duration-ms="6642" started-at="2021-02-21T22:56:30Z" finished-at="2021-02-21T22:56:36Z">
+  <suite name="heroku Execution" duration-ms="8150" started-at="2021-02-22T06:17:22Z" finished-at="2021-02-22T06:17:30Z">
     <groups>
     </groups>
-    <test name="UserTests" duration-ms="5407" started-at="2021-02-21T22:56:30Z" finished-at="2021-02-21T22:56:35Z">
+    <test name="UserTests" duration-ms="6931" started-at="2021-02-22T06:17:22Z" finished-at="2021-02-22T06:17:29Z">
       <class name="UserTests">
-        <test-method status="PASS" signature="setup(java.lang.String)[pri:0, instance:UserTests@42d3bd8b]" name="setup" is-config="true" duration-ms="1235" started-at="2021-02-21T22:56:30Z" finished-at="2021-02-21T22:56:31Z">
+        <test-method status="PASS" signature="setup(java.lang.String)[pri:0, instance:UserTests@42d3bd8b]" name="setup" is-config="true" duration-ms="1254" started-at="2021-02-22T06:17:22Z" finished-at="2021-02-22T06:17:23Z">
           <params>
             <param index="0">
               <value>
@@ -18,19 +18,60 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="NegativeTest_Creating_User_Already_Exist()[pri:0, instance:UserTests@42d3bd8b]" name="NegativeTest_Creating_User_Already_Exist" duration-ms="4141" started-at="2021-02-21T22:56:31Z" finished-at="2021-02-21T22:56:35Z">
+        <test-method status="PASS" signature="NegativeTest_Creating_User_Already_Exist()[pri:0, instance:UserTests@42d3bd8b]" name="NegativeTest_Creating_User_Already_Exist" duration-ms="4072" started-at="2021-02-22T06:17:23Z" finished-at="2021-02-22T06:17:27Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- NegativeTest_Creating_User_Already_Exist -->
+        <test-method status="PASS" signature="setup(java.lang.String)[pri:0, instance:UserTests@42d3bd8b]" name="setup" is-config="true" duration-ms="10" started-at="2021-02-22T06:17:27Z" finished-at="2021-02-22T06:17:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[https://api-coffee-testing.herokuapp.com]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="Test_Create_User_Successful()[pri:0, instance:UserTests@42d3bd8b]" name="Test_Create_User_Successful" duration-ms="743" started-at="2021-02-22T06:17:27Z" finished-at="2021-02-22T06:17:28Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Test_Create_User_Successful -->
+        <test-method status="PASS" signature="setup(java.lang.String)[pri:0, instance:UserTests@42d3bd8b]" name="setup" is-config="true" duration-ms="0" started-at="2021-02-22T06:17:28Z" finished-at="2021-02-22T06:17:28Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[https://api-coffee-testing.herokuapp.com]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="Test_login_User_Successful()[pri:0, instance:UserTests@42d3bd8b]" name="Test_login_User_Successful" duration-ms="821" started-at="2021-02-22T06:17:28Z" finished-at="2021-02-22T06:17:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Test_login_User_Successful -->
       </class> <!-- UserTests -->
     </test> <!-- UserTests -->
-    <test name="MiscelaneosTest" duration-ms="1205" started-at="2021-02-21T22:56:35Z" finished-at="2021-02-21T22:56:36Z">
+    <test name="MiscelaneosTest" duration-ms="1197" started-at="2021-02-22T06:17:29Z" finished-at="2021-02-22T06:17:30Z">
       <class name="MiscTests">
-        <test-method status="PASS" signature="ATest_PING_ENDPOINT()[pri:0, instance:MiscTests@3a03464]" name="ATest_PING_ENDPOINT" duration-ms="618" started-at="2021-02-21T22:56:35Z" finished-at="2021-02-21T22:56:36Z">
+        <test-method status="PASS" signature="setup(java.lang.String)[pri:0, instance:MiscTests@3a03464]" name="setup" is-config="true" duration-ms="0" started-at="2021-02-22T06:17:29Z" finished-at="2021-02-22T06:17:29Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[https://api-coffee-testing.herokuapp.com]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="ATest_PING_ENDPOINT()[pri:0, instance:MiscTests@3a03464]" name="ATest_PING_ENDPOINT" duration-ms="617" started-at="2021-02-22T06:17:29Z" finished-at="2021-02-22T06:17:30Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ATest_PING_ENDPOINT -->
-        <test-method status="PASS" signature="setup(java.lang.String)[pri:0, instance:MiscTests@3a03464]" name="setup" is-config="true" duration-ms="0" started-at="2021-02-21T22:56:35Z" finished-at="2021-02-21T22:56:35Z">
+        <test-method status="PASS" signature="setup(java.lang.String)[pri:0, instance:MiscTests@3a03464]" name="setup" is-config="true" duration-ms="0" started-at="2021-02-22T06:17:30Z" finished-at="2021-02-22T06:17:30Z">
           <params>
             <param index="0">
               <value>
@@ -41,21 +82,10 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="BTest_HomePage_Response()[pri:0, instance:MiscTests@3a03464]" name="BTest_HomePage_Response" duration-ms="587" started-at="2021-02-21T22:56:36Z" finished-at="2021-02-21T22:56:36Z">
+        <test-method status="PASS" signature="BTest_HomePage_Response()[pri:0, instance:MiscTests@3a03464]" name="BTest_HomePage_Response" duration-ms="580" started-at="2021-02-22T06:17:30Z" finished-at="2021-02-22T06:17:30Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BTest_HomePage_Response -->
-        <test-method status="PASS" signature="setup(java.lang.String)[pri:0, instance:MiscTests@3a03464]" name="setup" is-config="true" duration-ms="0" started-at="2021-02-21T22:56:36Z" finished-at="2021-02-21T22:56:36Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[https://api-coffee-testing.herokuapp.com]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
       </class> <!-- MiscTests -->
     </test> <!-- MiscelaneosTest -->
   </suite> <!-- heroku Execution -->
