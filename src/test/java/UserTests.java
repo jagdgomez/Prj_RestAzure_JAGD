@@ -17,11 +17,11 @@ public class UserTests extends BaseTest {
 
         User user = new User("Mauricio","pablo@test.com","castro");
         System.out.println("Already Created User: "+ user.getEmail());
-        System.out.println("Request to: " + String.format("%s%s/register",baseUrl,resourcePath));
+        System.out.println("Request to: " + String.format("%s/register",resourcePath));
         baseRequest
                 .body(user)
                 .when()
-                    .post(String.format("%s%s/register",baseUrl,resourcePath))
+                    .post(String.format("%s/register",resourcePath))
                 .then()
                     .body("message", equalTo("User already exists"))
                 .and()
@@ -32,12 +32,12 @@ public class UserTests extends BaseTest {
 
         User user = new User("Johnny",generateRandomEmail(),"gomez");
         System.out.println("Email Generated: "+ user.getEmail());
-        System.out.println("Request to: " + String.format("%s%s/register",baseUrl,resourcePath));
+        System.out.println("Request to: " + String.format("%s/register",resourcePath));
 
         baseRequest
                 .body(user)
                 .when()
-                    .post(String.format("%s%s/register",baseUrl,resourcePath))
+                    .post(String.format("%s/register",resourcePath))
                 .then()
                     .body("message", equalTo("Successfully registered"))
                 .and()
@@ -49,11 +49,11 @@ public class UserTests extends BaseTest {
 
         User user = new User("Johnny","jagdtest@test.com","gomez");
         System.out.println ("Login User: "+ user.getEmail());
-        System.out.println("Request to: " + String.format("%s%s/login",baseUrl,resourcePath));
+        System.out.println("Request to: " + String.format("%s/login",resourcePath));
         baseRequest
                 .body(user)
                 .when()
-                    .post(String.format("%s%s/login",baseUrl,resourcePath))
+                    .post(String.format("%s/login",resourcePath))
                 .then()
                     .body("message", equalTo("User signed in"))
                 .and()

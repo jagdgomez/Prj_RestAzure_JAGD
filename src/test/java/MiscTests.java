@@ -25,7 +25,7 @@ public class MiscTests extends BaseTest {
                  .given()
                 .headers("User-Agent","Johnny Agent")
          .when()
-                .get(String.format("%s%s/ping",baseUrl,resourcePath))
+                .get(resourcePath + "/ping")
          .then()
                 .header("Content-Length",equalTo("50"))
                 .header("Access-Control-Allow-Origin",equalTo("http://localhost"))
@@ -38,7 +38,7 @@ public class MiscTests extends BaseTest {
     @Test
     public void BTest_HomePage_Response(){
         baseRequest.given()
-                .get(String.format("%s/",baseUrl))
+                .get("/")
         .then()
                 .body(containsString("Gin Boilerplate"))
                 .statusCode(200);

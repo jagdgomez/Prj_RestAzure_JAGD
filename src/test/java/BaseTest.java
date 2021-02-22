@@ -1,3 +1,4 @@
+import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
@@ -14,7 +15,9 @@ public class BaseTest {
     @BeforeMethod
     public void setup(@Optional("https://api-coffee-testing.herokuapp.com") String baseUrl ) {
 
-        this.baseUrl = baseUrl;
+     //   this.baseUrl = baseUrl;  * RestAssured tiene una forma para mandar un baseurl, hay que eliminarlo
+     //   de los otros urls */
+        RestAssured.baseURI = baseUrl;
         baseRequest = given().headers("User-Agent","Johnny's user Agent");
 
     }
