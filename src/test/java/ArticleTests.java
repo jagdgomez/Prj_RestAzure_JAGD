@@ -1,4 +1,7 @@
 import helpers.DataHelper;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
 import pojo.Article;
 import pojo.User;
@@ -14,8 +17,21 @@ public class ArticleTests extends BaseTest {
    private static String baseUrl="https://api-coffee-testing.herokuapp.com";*/
 
     private static String resourcePath="/v1/article";
-
+    private static Integer createdArticle = 0;
     /*path de aqui es: https://api-coffee-testing.herokuapp.com/v1/user/register"*/
+
+    @BeforeGroups ("create_article")
+    public void createArticle() {
+        Article testarticle = new Article(DataHelper.generateRandomTitle(),DataHelper.generateRandomContent());
+        Response response = given()
+                .spec(RequestSpecs.generateToken())
+                .body(testarticle)
+                .post(resourcePath);
+        JsonPath jsonPathEvaluator = response.jsonPath();
+        createdArticle = jsonPathEvaluator.get("id");
+        System.out.println("Generated Article # "+ createdArticle);
+     }
+
 
     @Test
     public void Test_Create_Article_success(){
@@ -59,6 +75,19 @@ public class ArticleTests extends BaseTest {
                 .body("message", equalTo("Please login first"))
                 .and()
                 .statusCode(401)
+                .spec(ResponseSpecs.defaultSpec());
+    }
+
+    @Test (groups = "create_article")
+    public void Test_Delete_Article_success(){
+        System.out.println("Article to be deleted: "+ createdArticle);
+                given()
+                    .spec(RequestSpecs.generateToken())
+                    .delete(String.format("%s/%s",resourcePath,createdArticle.toString()))
+                .then()
+                .body("message", equalTo("Article deleted"))
+                .and()
+                .statusCode(200)
                 .spec(ResponseSpecs.defaultSpec());
     }
 
