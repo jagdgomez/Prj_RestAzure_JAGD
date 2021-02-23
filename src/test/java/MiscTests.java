@@ -21,8 +21,7 @@ public class MiscTests extends BaseTest {
 
         /*como parte de los headers van los authorizations*/
 
-         baseRequest
-                 .given()
+          given()
                 .headers("User-Agent","Johnny Agent")
          .when()
                 .get(resourcePath + "/ping")
@@ -37,7 +36,8 @@ public class MiscTests extends BaseTest {
 
     @Test
     public void BTest_HomePage_Response(){
-        baseRequest.given()
+
+         given()
                 .get("/")
         .then()
                 .body(containsString("Gin Boilerplate"))

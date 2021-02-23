@@ -1,7 +1,10 @@
+import helpers.DataHelper;
 import org.testng.annotations.Test;
 import pojo.User;
+import specifications.ResponseSpecs;
 
 import static helpers.DataHelper.generateRandomEmail;
+import static io.restassured.RestAssured.given;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 public class UserTests extends BaseTest {
@@ -18,8 +21,9 @@ public class UserTests extends BaseTest {
         User user = new User("Mauricio","pablo@test.com","castro");
         System.out.println("Already Created User: "+ user.getEmail());
         System.out.println("Request to: " + String.format("%s/register",resourcePath));
-        baseRequest
-                .body(user)
+
+                  given()
+                    .body(user)
                 .when()
                     .post(String.format("%s/register",resourcePath))
                 .then()
@@ -34,30 +38,37 @@ public class UserTests extends BaseTest {
         System.out.println("Email Generated: "+ user.getEmail());
         System.out.println("Request to: " + String.format("%s/register",resourcePath));
 
-        baseRequest
-                .body(user)
+                given()
+                    .body(user)
                 .when()
                     .post(String.format("%s/register",resourcePath))
                 .then()
                     .body("message", equalTo("Successfully registered"))
                 .and()
-                    .statusCode(200);
+                    .statusCode(200)
+                //usando el spect que se creo en el base test
+                .spec(ResponseSpecs.defaultSpec());
     }
 
     @Test
     public void Test_login_User_Successful(){
 
-        User user = new User("Johnny","jagdtest@test.com","gomez");
-        System.out.println ("Login User: "+ user.getEmail());
+        System.out.println ("Login User: "+ DataHelper.getTestUser());
         System.out.println("Request to: " + String.format("%s/login",resourcePath));
-        baseRequest
-                .body(user)
+
+                given()
+                    .body(DataHelper.getTestUser())
                 .when()
                     .post(String.format("%s/login",resourcePath))
                 .then()
                     .body("message", equalTo("User signed in"))
                 .and()
-                    .statusCode(200);
+        //        .header("Content-Type",equalTo("application/json; charset=utf-8"))
+        //        .header("Access-Control-Allow-Origin",equalTo("http://localhost"))
+                    .statusCode(200)
+        /* en lugar de validar el header,, ahora usamos el spec aqui */
+                    .spec(ResponseSpecs.defaultSpec());
+
     }
 }
 
