@@ -16,4 +16,10 @@
             <class name="MiscTests"></class>
         </classes>
     </test>
+    <test name="Articles Tests">
+        <classes>
+            <class name="ArticleTests"></class>
+        </classes>
+    </test>
+
 </suite>

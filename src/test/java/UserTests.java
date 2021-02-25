@@ -53,7 +53,7 @@ public class UserTests extends BaseTest {
     @Test
     public void Test_login_User_Successful(){
 
-        System.out.println ("Login User: "+ DataHelper.getTestUser());
+        System.out.println ("Login User with: "+ " eMail: " + DataHelper.getTestUser().getEmail() +  " Name: " + DataHelper.getTestUser().getName());
         System.out.println("Request to: " + String.format("%s/login",resourcePath));
 
                 given()

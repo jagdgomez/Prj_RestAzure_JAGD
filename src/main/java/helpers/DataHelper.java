@@ -32,7 +32,7 @@ public class DataHelper {
         return generatedString;
     }
 
-    public static User getTestUser(){
+    public static User  getTestUser(){
         return new User("Johnny","jagdtest@test.com","gomez");
 
     }

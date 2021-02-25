@@ -1,0 +1,200 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "required": [
+    "results"
+  ],
+  "properties": {
+    "results": {
+      "$id": "#/properties/results",
+      "type": "array",
+      "default": [],
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/results/items",
+        "anyOf": [
+          {
+            "$id": "#/properties/results/items/anyOf/0",
+            "type": "object",
+            "title": "The first anyOf schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "required": [
+              "data",
+              "meta"
+                          ],
+            "properties": {
+              "data": {
+                "$id": "#/properties/results/items/anyOf/0/properties/data",
+                "type": "array",
+                "title": "The data schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": [],
+                "additionalItems": true,
+                "items": {
+                  "$id": "#/properties/results/items/anyOf/0/properties/data/items",
+                  "anyOf": [
+                    {
+                      "$id": "#/properties/results/items/anyOf/0/properties/data/items/anyOf/0",
+                      "type": "object",
+                      "title": "The first anyOf schema",
+                      "description": "An explanation about the purpose of this instance.",
+                      "default": {},
+                      "required": [
+                        "id",
+                        "title",
+                        "content",
+                        "updated_at",
+                        "created_at",
+                        "user"
+                      ],
+                      "properties": {
+                        "id": {
+                          "$id": "#/properties/results/items/anyOf/0/properties/data/items/anyOf/0/properties/id",
+                          "type": "integer",
+                          "title": "The id schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": 0,
+                          "examples": [
+                            1035
+                          ]
+                        },
+                        "title": {
+                          "$id": "#/properties/results/items/anyOf/0/properties/data/items/anyOf/0/properties/title",
+                          "type": "string",
+                          "title": "The title schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": "",
+                          "examples": [
+                            "tkdskkulvy"
+                          ]
+                        },
+                        "content": {
+                          "$id": "#/properties/results/items/anyOf/0/properties/data/items/anyOf/0/properties/content",
+                          "type": "string",
+                          "title": "The content schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": "",
+                          "examples": [
+                            "cwzlicmeczmxzolqlhylulcyljevxubpspxqjswqflibqqkswkaowwhbixcvzdkhhkgtjudegahrlvxwplpubedsftfygxioofkd"
+                          ]
+                        },
+                        "updated_at": {
+                          "$id": "#/properties/results/items/anyOf/0/properties/data/items/anyOf/0/properties/updated_at",
+                          "type": "integer",
+                          "title": "The updated_at schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": 0,
+                          "examples": [
+                            1614231751
+                          ]
+                        },
+                        "created_at": {
+                          "$id": "#/properties/results/items/anyOf/0/properties/data/items/anyOf/0/properties/created_at",
+                          "type": "integer",
+                          "title": "The created_at schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": 0,
+                          "examples": [
+                            1614231751
+                          ]
+                        },
+                        "user": {
+                          "$id": "#/properties/results/items/anyOf/0/properties/data/items/anyOf/0/properties/user",
+                          "type": "object",
+                          "title": "The user schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": {},
+                          "examples": [
+                            {
+                              "id": 386,
+                              "name": "Johnny",
+                              "email": "jagdtest@test.com"
+                            }
+                          ],
+                          "required": [
+                            "id",
+                            "name",
+                            "email"
+                          ],
+                          "properties": {
+                            "id": {
+                              "$id": "#/properties/results/items/anyOf/0/properties/data/items/anyOf/0/properties/user/properties/id",
+                              "type": "integer",
+                              "title": "The id schema",
+                              "description": "An explanation about the purpose of this instance.",
+                              "default": 0,
+                              "examples": [
+                                386
+                              ]
+                            },
+                            "name": {
+                              "$id": "#/properties/results/items/anyOf/0/properties/data/items/anyOf/0/properties/user/properties/name",
+                              "type": "string",
+                              "title": "The name schema",
+                              "description": "An explanation about the purpose of this instance.",
+                              "default": "",
+                              "examples": [
+                                "Johnny"
+                              ]
+                            },
+                            "email": {
+                              "$id": "#/properties/results/items/anyOf/0/properties/data/items/anyOf/0/properties/user/properties/email",
+                              "type": "string",
+                              "title": "The email schema",
+                              "description": "An explanation about the purpose of this instance.",
+                              "default": "",
+                              "examples": [
+                                "jagdtest@test.com"
+                              ]
+                            }
+                          },
+                          "additionalProperties": true
+                        }
+                      },
+                      "additionalProperties": true
+                    }
+                  ]
+                }
+              },
+              "meta": {
+                "$id": "#/properties/results/items/anyOf/0/properties/meta",
+                "type": "object",
+                "title": "The meta schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": {},
+                "examples": [
+                  {
+                    "total": 28
+                  }
+                ],
+                "required": [
+                  "total"
+                ],
+                "properties": {
+                  "total": {
+                    "$id": "#/properties/results/items/anyOf/0/properties/meta/properties/total",
+                    "type": "integer",
+                    "title": "The total schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                      28
+                    ]
+                  }
+                },
+                "additionalProperties": true
+              }
+            },
+            "additionalProperties": true
+          }
+        ]
+      }
+    }
+  },
+  "additionalProperties": true
+}
