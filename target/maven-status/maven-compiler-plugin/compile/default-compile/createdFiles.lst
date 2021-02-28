@@ -1,2 +1,6 @@
+helpers\RequestHelper.class
+pojo\Article.class
 helpers\DataHelper.class
+specifications\RequestSpecs.class
+specifications\ResponseSpecs.class
 pojo\User.class

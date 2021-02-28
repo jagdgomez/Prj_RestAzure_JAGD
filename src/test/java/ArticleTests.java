@@ -88,7 +88,7 @@ public class ArticleTests extends BaseTest {
     }
 
     @Test (groups = "create_article")
-    public void Test_Delete_Article_success(){
+    public void Z_Test_Delete_Article_success(){
         System.out.println("Article to be deleted: "+ createdArticle);
                 given()
                     .spec(RequestSpecs.generateToken())
