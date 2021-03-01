@@ -21,5 +21,10 @@
             <class name="ArticleTests"></class>
         </classes>
     </test>
+    <test name="Posts Tests">
+        <classes>
+            <class name="PostTests"></class>
+        </classes>
+    </test>
 
 </suite>

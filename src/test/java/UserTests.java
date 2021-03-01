@@ -1,6 +1,7 @@
 import helpers.DataHelper;
 import org.testng.annotations.Test;
 import pojo.User;
+import specifications.RequestSpecs;
 import specifications.ResponseSpecs;
 
 import static helpers.DataHelper.generateRandomEmail;
@@ -16,7 +17,7 @@ public class UserTests extends BaseTest {
     /*path de aqui es: https://api-coffee-testing.herokuapp.com/v1/user/register"*/
 
     @Test
-    public void NegativeTest_Creating_User_Already_Exist(){
+    public void BNegativeTest_Creating_User_Already_Exist(){
 
         User user = new User("Mauricio","pablo@test.com","castro");
         System.out.println("Already Created User: "+ user.getEmail());
@@ -32,7 +33,7 @@ public class UserTests extends BaseTest {
                     .statusCode(406);
     }
     @Test
-    public void Test_Create_User_Successful(){
+    public void ATest_Create_User_Successful(){
 
         User user = new User("Johnny",generateRandomEmail(),"gomez");
         System.out.println("Email Generated: "+ user.getEmail());
@@ -51,7 +52,7 @@ public class UserTests extends BaseTest {
     }
 
     @Test
-    public void Test_login_User_Successful(){
+    public void CTest_login_User_Successful(){
 
         System.out.println ("Login User with: "+ " eMail: " + DataHelper.getTestUser().getEmail() +  " Name: " + DataHelper.getTestUser().getName());
         System.out.println("Request to: " + String.format("%s/login",resourcePath));
@@ -68,6 +69,23 @@ public class UserTests extends BaseTest {
                     .statusCode(200)
         /* en lugar de validar el header,, ahora usamos el spec aqui */
                     .spec(ResponseSpecs.defaultSpec());
+
+    }
+
+    @Test
+    public void DTest_logOut_User_Successful(){
+
+        System.out.println ("Logout User with: "+ " eMail: " + DataHelper.getTestUser().getEmail() +  " Name: " + DataHelper.getTestUser().getName());
+        System.out.println("Request to: " + String.format("%s/logout",resourcePath));
+
+        given()
+                .spec(RequestSpecs.generateToken())
+                .get(String.format("%s/logout",resourcePath))
+                .then()
+                .body("message", equalTo("Successfully logged out"))
+                .and()
+                .statusCode(200)
+                .spec(ResponseSpecs.defaultSpec());
 
     }
 }
