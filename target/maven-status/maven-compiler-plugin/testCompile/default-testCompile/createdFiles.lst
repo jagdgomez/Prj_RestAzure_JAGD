@@ -1,5 +1,6 @@
 ArticleTests.class
 UserTests.class
 PostTests.class
+CommentsTest.class
 MiscTests.class
 BaseTest.class

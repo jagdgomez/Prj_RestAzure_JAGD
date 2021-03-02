@@ -26,5 +26,10 @@
             <class name="PostTests"></class>
         </classes>
     </test>
+    <test name="Comments Tests">
+        <classes>
+            <class name="CommentsTest"></class>
+        </classes>
+    </test>
 
 </suite>

@@ -17,6 +17,14 @@ public class DataHelper {
         return String.format("%s" , generateRandomString(100));
     }
 
+    public static String generateRandomName(){
+        return String.format("%s" , generateRandomString(10));
+    }
+
+    public static String generateRandomComment(){
+        return String.format("%s" , generateRandomString(100));
+    }
+
     private static String generateRandomString(int targetStringLength){
         int leftLimit = 97; // letter 'a'
         int rightLimit = 122; // letter 'z'

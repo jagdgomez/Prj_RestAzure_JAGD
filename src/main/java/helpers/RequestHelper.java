@@ -16,4 +16,5 @@ public class RequestHelper {
         String token = jsonPathEvaluator.get("token.access_token");
         return token;
     }
+
 }

@@ -2,6 +2,8 @@ helpers\RequestHelper.class
 pojo\Article.class
 helpers\DataHelper.class
 specifications\RequestSpecs.class
+pojo\Comment.class
+pojo\InvalidComment.class
 pojo\InvalidPost.class
 pojo\Post.class
 specifications\ResponseSpecs.class
