@@ -24,33 +24,7 @@ public class CommentsTest extends BaseTest {
     private static String GeneratedName = "";
     private static String GeneratedComment = "";
 
-    @BeforeGroups (groups="SrcCreatComment")
-    public void SearchOrCreateComment() {
-        System.out.println("SearchOrCreateComment");
-        RestAssured.authentication= basic ("testuser","testpass");
-        Response SearchResponse = given()
-                //.spec(RequestSpecs.generateToken())
-                .get(resourcePath+ "/"+ createdPost+"421");
-        IntStatusCode = SearchResponse.getStatusCode();
-        if (IntStatusCode== 200) {
-            System.out.println("Comment In PostID# " + createdPost + " 421 Was Found");
-            }
-        else {
-            System.out.println("Comment was NOT Found");
-            System.out.println("Generating new comment for Test");
-            Comment testComment = new Comment(DataHelper.generateRandomName(),DataHelper.generateRandomComment());
-            Response response = given()
-                    //.spec(RequestSpecs.generateToken())
-                    .body(testComment)
-                    .post(resourcePath+ "/"+ createdPost.toString());
-            JsonPath jsonPathEvaluator = response.jsonPath();
-            createdComment = jsonPathEvaluator.get("id");
-            System.out.println("Generated: PostID "+ createdPost +  " Comment ID " + createdComment);
-        }
-
-    }
-
-    @BeforeClass
+    @BeforeGroups (groups="1Create_Post")
     public void SearchOrCreatePost() {
         System.out.println("SearchOrCreatePost");
         RestAssured.authentication= basic ("testuser","testpass");
@@ -77,7 +51,34 @@ public class CommentsTest extends BaseTest {
 
     }
 
-    @Test
+    @BeforeGroups (groups="2Create_Comment")
+    public void SearchOrCreateComment() {
+        System.out.println("SearchOrCreateComment");
+        RestAssured.authentication= basic ("testuser","testpass");
+        Response SearchResponse = given()
+                //.spec(RequestSpecs.generateToken())
+                .get(resourcePath+ "/"+ createdPost+"421");
+        IntStatusCode = SearchResponse.getStatusCode();
+        if (IntStatusCode== 200) {
+            System.out.println("Comment In PostID# " + createdPost + " 421 Was Found");
+        }
+        else {
+            System.out.println("Comment was NOT Found");
+            System.out.println("Generating new comment for Test");
+            Comment testComment = new Comment(DataHelper.generateRandomName(),DataHelper.generateRandomComment());
+            Response response = given()
+                    //.spec(RequestSpecs.generateToken())
+                    .body(testComment)
+                    .post(resourcePath+ "/"+ createdPost.toString());
+            JsonPath jsonPathEvaluator = response.jsonPath();
+            createdComment = jsonPathEvaluator.get("id");
+            System.out.println("Generated: PostID "+ createdPost +  " Comment ID " + createdComment);
+        }
+
+    }
+
+
+    @Test (groups="1Create_Post")
     public void ATest_Create_Comment_success(){
 
         Comment testComment = new Comment(DataHelper.generateRandomName(),DataHelper.generateRandomComment());
@@ -98,7 +99,7 @@ public class CommentsTest extends BaseTest {
                 .statusCode(200)
                 .spec(ResponseSpecs.defaultSpec());
     }
-    @Test (groups = "create_post")
+    @Test (groups = "1Create_Post")
     public void BTest_Create_Comment_Fails(){
 
         InvalidComment testComment = new InvalidComment(DataHelper.generateRandomName(),DataHelper.generateRandomComment());
@@ -119,7 +120,7 @@ public class CommentsTest extends BaseTest {
                 .statusCode(406)
                 .spec(ResponseSpecs.defaultSpec());
     }
-    @Test (groups = "create_post")
+    @Test (groups = "1Create_Post")
     public void CTest_Create_Comment_FailbySecurity(){
 
         Comment testComment = new Comment(DataHelper.generateRandomName(),DataHelper.generateRandomComment());
@@ -142,7 +143,7 @@ public class CommentsTest extends BaseTest {
                 .spec(ResponseSpecs.defaultSpec());
     }
 
-    @Test (groups = {"SrcCreatComment"})
+    @Test (groups = {"1Create_Post","2Create_Comment"})
     public void DTest_ShowPost_success(){
         System.out.println("Request to: " + resourcePath +"/" + createdPost.toString() + "/" + createdComment.toString());
         given()
