@@ -41,6 +41,10 @@ public class CommentsTest extends BaseTest {
         IntStatusCode = SearchResponse.getStatusCode();
         if (IntStatusCode== 200) {
             System.out.println("PostID# " + createdPost.toString()+ " Was Found");
+            JsonPath jsonPathEvaluator = SearchResponse.jsonPath();
+            System.out.println ("Post ID# " + (jsonPathEvaluator.get("data.id").toString()));
+            System.out.println ("Post Title " + (jsonPathEvaluator.get("data.title").toString()));
+            System.out.println ("Post Content " + (jsonPathEvaluator.get("data.content").toString()));
 
         }
         else {
@@ -54,14 +58,17 @@ public class CommentsTest extends BaseTest {
             JsonPath jsonPathEvaluator = response.jsonPath();
             createdPost = jsonPathEvaluator.get("id");
             System.out.println("Generated Post ID# "+ createdPost.toString());
+            System.out.println ("Post Title " + DataHelper.generateRandomTitle());
+            System.out.println ("Post Content " + DataHelper.generateRandomContent());
+
         }
 
     }
 
-    @BeforeGroups (groups="2SrchAndCreate_Comment")
+    @BeforeGroups (groups="2SrcAndCreate_Comment")
     public void SearchOrCreateComment() {
         System.out.println("SearchOrCreateComment");
-        createdComment = 755;
+        createdComment = 777;
         RequestHelper.generateBasicToken();
         Response SearchResponse = given()
                 //.spec(RequestSpecs.generateToken())
@@ -69,7 +76,9 @@ public class CommentsTest extends BaseTest {
         IntStatusCode = SearchResponse.getStatusCode();
         if (IntStatusCode== 200) {
             System.out.println("Comment # " + createdComment + " at post# " + createdPost + " Was Found");
-
+            JsonPath jsonPathEvaluator = SearchResponse.jsonPath();
+            System.out.println ("Comment Name " + (jsonPathEvaluator.get("data.name").toString()));
+            System.out.println ("Comment " + (jsonPathEvaluator.get("data.comment").toString()));
         }
         else {
             System.out.println("Comment was NOT Found");
@@ -81,9 +90,13 @@ public class CommentsTest extends BaseTest {
             JsonPath jsonPathEvaluator = response.jsonPath();
             createdComment = jsonPathEvaluator.get("id");
             System.out.println("Generated: PostID "+ createdPost +  " Comment ID " + createdComment);
+            System.out.println ("Comment Name: " + DataHelper.generateRandomName());
+            System.out.println ("Comment: " + DataHelper.generateRandomComment());
         }
 
     }
+
+
 
 
     @Test (groups="1SrcAndCreate_Post")
@@ -91,11 +104,10 @@ public class CommentsTest extends BaseTest {
 
         Comment testComment = new Comment(DataHelper.generateRandomName(),DataHelper.generateRandomComment());
 
-        System.out.println("Generated Name: "+ testComment.getName());
-        System.out.println("Generated Comment: "+ testComment.getComment());
+        System.out.println("Generated Name = "+ testComment.getName());
+        System.out.println("Generated Comment = "+ testComment.getComment());
         System.out.println("Request to: " + resourcePath);
         System.out.println("Adding Comment to Post #: " + createdPost.toString());
-        System.out.println("Generate Valid Token");
         RequestHelper.generateBasicToken();
 
         given()
@@ -117,7 +129,6 @@ public class CommentsTest extends BaseTest {
         System.out.println("Generated Comment: "+ testComment.getComments());
         System.out.println("Request to: " + resourcePath);
         System.out.println("Adding Comment to Post #: " + createdPost.toString());
-        System.out.println("Generate Valid Token");
         RequestHelper.generateBasicToken();
 
         given()
@@ -138,7 +149,6 @@ public class CommentsTest extends BaseTest {
         System.out.println("Generated Name: "+ testComment.getName());
         System.out.println("Generated Comment: "+ testComment.getComment());
         System.out.println("Request to: " + resourcePath);
-        System.out.println("Basic Authentication with wrong credentials");
         RequestHelper.generateInvalidBasicToken();
         System.out.println("Comment could not be added to Post #: " + createdPost.toString());
 
@@ -153,10 +163,9 @@ public class CommentsTest extends BaseTest {
                 .spec(ResponseSpecs.defaultSpec());
     }
 
-    @Test (groups = {"1SrcAndCreate_Post","2SrchAndCreate_Comment"})
+    @Test (groups = {"1SrcAndCreate_Post","2SrcAndCreate_Comment"})
     public void DTest_ShowComment_success(){
         System.out.println("Request to: " + resourcePath +"/" + createdPost.toString() + "/" + createdComment.toString());
-        System.out.println("Generate Valid Token");
         RequestHelper.generateBasicToken();
 
         given()
@@ -171,10 +180,9 @@ public class CommentsTest extends BaseTest {
                 .spec(ResponseSpecs.defaultSpec());
     }
 
-    @Test (groups = {"1SrcAndCreate_Post","2SrchAndCreate_Comment"})
+    @Test (groups = {"1SrcAndCreate_Post","2SrcAndCreate_Comment"})
     public void ETest_ShowComment_Fail(){
         System.out.println("Request to Invalid comment at: " + resourcePath +"/" + createdPost.toString() + "/" + createdComment.toString()+"105");
-        System.out.println("Generate Valid Token");
         RequestHelper.generateBasicToken();
         given()
                 .when()
@@ -188,7 +196,7 @@ public class CommentsTest extends BaseTest {
                 .spec(ResponseSpecs.defaultSpec());
     }
 
-    @Test (groups = {"1SrcAndCreate_Post","2SrchAndCreate_Comment"})
+    @Test (groups = {"1SrcAndCreate_Post","2SrcAndCreate_Comment"})
     public void FTest_ShowComment_FailbySecurity(){
         System.out.println("Basic Authentication with wrong credentials");
         RequestHelper.generateInvalidBasicToken();
@@ -206,7 +214,6 @@ public class CommentsTest extends BaseTest {
     @Test (groups = "1SrcAndCreate_Post")
     public void GTest_ShowAllComments_success(){
         System.out.println("Request to: " + resourcePath+"s" +"/" + createdPost.toString());
-        System.out.println("Generate Valid Token");
         RequestHelper.generateBasicToken();
         given()
                 .when()
@@ -218,10 +225,9 @@ public class CommentsTest extends BaseTest {
 
     @Test (groups = "1SrcAndCreate_Post")
     public void HTest_ShowAllComments_SchemaValidation(){
-        System.out.println("Validating Comments on Post#: "+ createdPost.toString());
+        System.out.println("Validating Show All Comments on Post#: "+ createdPost.toString());
         /* schema validation */
         System.out.println("Validating Comments Schema at :" + resourcePath+"s" +"/" + createdPost.toString());
-        System.out.println("Generate Valid Token");
         RequestHelper.generateBasicToken();
 
         Response response = given()
@@ -230,5 +236,128 @@ public class CommentsTest extends BaseTest {
         assertThat(response.path("results.data.id"), not(emptyArray()));
     }
 
+    @Test (groups = {"1SrcAndCreate_Post"})
+    public void ITest_ShowAllComments_FailbySecurity(){
+        System.out.println("Request to: " + resourcePath+"s" +"/" + createdPost.toString());
+        RequestHelper.generateInvalidBasicToken();
+        given()
+                .when()
+                .get(resourcePath +"s"+"/" + createdPost.toString())
+                .then()
+                .body("message", equalTo("Please login first"))
+                .and()
+                .statusCode(401)
+                .spec(ResponseSpecs.defaultSpec());
+    }
 
+
+    @Test (groups = {"1SrcAndCreate_Post","2SrcAndCreate_Comment"})
+    public void JTest_Edit_Comment_success(){
+
+        Comment testComment = new Comment(DataHelper.generateRandomName(),DataHelper.generateRandomComment());
+
+        System.out.println("Generated New Name = "+ testComment.getName());
+        System.out.println("Generated New Comment = "+ testComment.getComment());
+        System.out.println("Edit Comment on Post #: " + resourcePath +"/" + createdPost.toString() + "/" + createdComment.toString());
+        RequestHelper.generateBasicToken();
+
+        given()
+                .body(testComment)
+                .when()
+                .put(resourcePath +"/" + createdPost.toString() + "/" + createdComment.toString())
+                .then()
+                .body("message", equalTo("Comment updated"))
+                .and()
+                .statusCode(200)
+                .spec(ResponseSpecs.defaultSpec());
+    }
+    @Test (groups = {"1SrcAndCreate_Post","2SrcAndCreate_Comment"})
+    public void KTest_Edit_Comment_Fails(){
+
+        InvalidComment testComment = new InvalidComment(DataHelper.generateRandomName(),DataHelper.generateRandomComment());
+
+        System.out.println("Generated New Comment Name = "+ testComment.getNames());
+        System.out.println("Generated New Comment = "+ testComment.getComments());
+        System.out.println("Request to: " + resourcePath);
+        System.out.println("Edit Comment on Post #: " + resourcePath +"/" + createdPost.toString() + "/" + createdComment.toString());
+        RequestHelper.generateBasicToken();
+
+        given()
+                .body(testComment)
+                .when()
+                .put(resourcePath +"/" + createdPost.toString() + "/" + createdComment.toString())
+                .then()
+                .body("message", equalTo("Invalid form"))
+                .and()
+                .statusCode(406)
+                .spec(ResponseSpecs.defaultSpec());
+    }
+    @Test (groups = {"1SrcAndCreate_Post","2SrcAndCreate_Comment"})
+    public void LTest_Edit_Comment_FailbySecurity(){
+
+        Comment testComment = new Comment(DataHelper.generateRandomName(),DataHelper.generateRandomComment());
+
+        System.out.println("Generated New Name = "+ testComment.getName());
+        System.out.println("Generated New Comment = "+ testComment.getComment());
+        System.out.println("Edit Comment on Post #: " + resourcePath +"/" + createdPost.toString() + "/" + createdComment.toString());
+        RequestHelper.generateInvalidBasicToken();
+
+        given()
+                .body(testComment)
+                .when()
+                .put(resourcePath +"/" + createdPost.toString() + "/" + createdComment.toString())
+                .then()
+                .body("message", equalTo("Please login first"))
+                .and()
+                .statusCode(401)
+                .spec(ResponseSpecs.defaultSpec());
+    }
+
+    @Test (groups = {"1SrcAndCreate_Post"})
+    public void MTest_Delete_Comment_success(){
+        createdComment= DataHelper.CreatedNewCommentId(resourcePath,createdPost);
+        System.out.println("Delete Comment on Post #: " + resourcePath +"/" + createdPost.toString() + "/" + createdComment.toString());
+        RequestHelper.generateBasicToken();
+
+        given()
+                .delete(resourcePath +"/" + createdPost.toString() + "/" + createdComment.toString())
+                .then()
+                .body("message", equalTo("Comment deleted"))
+                .and()
+                .statusCode(200)
+                .spec(ResponseSpecs.defaultSpec());
+    }
+    @Test (groups = {"1SrcAndCreate_Post"})
+    public void NTest_Delete_Comment_Fails(){
+        createdComment= DataHelper.CreatedNewCommentId(resourcePath,createdPost);
+        createdComment = (createdComment + 10);
+        System.out.println("Invalid Comment ID generated = " + createdComment);
+        System.out.println("Request to: " + resourcePath);
+        System.out.println("Delete Comment on Post #: " + resourcePath +"/" + createdPost.toString() + "/" + createdComment.toString());
+        RequestHelper.generateBasicToken();
+
+                 given()
+                .delete(resourcePath +"/" + createdPost.toString() + "/" + createdComment.toString())
+                .then()
+                .body("error", equalTo("Comment not found"))
+                .and()
+                .body("message", equalTo("Comment could not be deleted"))
+                .and()
+                .statusCode(406)
+                .spec(ResponseSpecs.defaultSpec());
+    }
+    @Test (groups = {"1SrcAndCreate_Post"})
+    public void OTest_Delete_Comment_FailbySecurity(){
+        createdComment= DataHelper.CreatedNewCommentId(resourcePath,createdPost);
+        System.out.println("Delete Comment on Post #: " + resourcePath +"/" + createdPost.toString() + "/" + createdComment.toString());
+        RequestHelper.generateInvalidBasicToken();
+
+        given()
+                .delete(resourcePath +"/" + createdPost.toString() + "/" + createdComment.toString())
+                .then()
+                .body("message", equalTo("Please login first"))
+                .and()
+                .statusCode(401)
+                .spec(ResponseSpecs.defaultSpec());
+    }
 }

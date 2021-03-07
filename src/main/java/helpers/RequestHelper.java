@@ -21,11 +21,13 @@ public class RequestHelper {
     }
 
     public static void generateBasicToken() {
+        System.out.println("Generating Valid Basic Token");
         BasicToken  = RestAssured.authentication = basic ("testuser","testpass");
     };
 
 
     public static void generateInvalidBasicToken() {
+        System.out.println("Generating Invalid Basic Token");
         BasicToken  = RestAssured.authentication = basic ("testuser1","testpass1");
     };
 

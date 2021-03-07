@@ -1,5 +1,11 @@
 package pojo;
 
+import helpers.DataHelper;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+
+import static io.restassured.RestAssured.given;
+
 public class Comment {
     public String name;
     public String comment;
@@ -20,12 +26,12 @@ public class Comment {
         this.comment = comment;
     }
 
-
-
     public Comment(String name, String comment) {
         this.name = name;
         this.comment = comment;
     }
+
+
 
 
 }

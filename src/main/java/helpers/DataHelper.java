@@ -1,8 +1,13 @@
 package helpers;
 
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import pojo.Comment;
 import pojo.User;
 
 import java.util.Random;
+
+import static io.restassured.RestAssured.given;
 
 public class DataHelper {
     public static String generateRandomEmail(){
@@ -43,5 +48,27 @@ public class DataHelper {
     public static User  getTestUser(){
         return new User("Johnny","jagdtest@test.com","gomez");
 
+    }
+
+    public static Integer CreatedNewCommentId(String resourcePath, Integer createdPost) {
+        System.out.println("Creating new comment for Test");
+        Integer createdCommentId;
+        Comment testComment = new Comment(DataHelper.generateRandomName(),DataHelper.generateRandomComment());
+        RequestHelper.generateBasicToken();
+        Response response = given()
+                .body(testComment)
+                .post(resourcePath+ "/"+ createdPost.toString());
+        if (response.getStatusCode()== 200) {
+        JsonPath jsonPathEvaluator = response.jsonPath();
+        createdCommentId = jsonPathEvaluator.get("id");
+        System.out.println("Status 200 - Generated: PostID "+ createdPost +  " Comment ID " + createdCommentId);
+        System.out.println ("New Comment Name: " + DataHelper.generateRandomName());
+        System.out.println ("New Comment: " + DataHelper.generateRandomComment());
+        }
+        else {
+        System.out.println("Error creating comment, status code = "+  response.getStatusCode());
+        createdCommentId=0;
+        }
+        return createdCommentId;
     }
 }
