@@ -175,19 +175,9 @@ public class PostTests extends BaseTest {
                 .get(resourcePath + "s");
                  assertThat(response.path("results.data.id"), not(emptyArray()));
     }
-    @Test
-    public void HTest_ShowAll_Posts_Fails(){
-        System.out.println("Request to: " + resourcePath +"ss" );
-
-        given()
-                .spec(RequestSpecs.generateToken())
-                .get(resourcePath+"ss")
-                .then()
-                .statusCode(404);
-    }
 
     @Test (groups = "create_post")
-    public void ITest_ShowAll_Posts_FailBySecurity(){
+    public void HTest_ShowAll_Posts_FailBySecurity(){
 
         System.out.println("Show PostID# "+ createdPost);
         System.out.println("Generated Post Title: "+ createdTitle);
@@ -205,7 +195,7 @@ public class PostTests extends BaseTest {
     }
 
     @Test (groups = "create_post")
-    public void JTest_Edit_Post_success(){
+    public void ITest_Edit_Post_success(){
 
         Post testPost = new Post(DataHelper.generateRandomTitle(),DataHelper.generateRandomContent());
 
@@ -227,7 +217,7 @@ public class PostTests extends BaseTest {
     }
 
     @Test (groups = "create_post")
-    public void KTest_Edit_Post_Fails(){
+    public void JTest_Edit_Post_Fails(){
 
         InvalidPost NotValidPost = new InvalidPost(DataHelper.generateRandomTitle(),DataHelper.generateRandomContent());
 
@@ -249,7 +239,7 @@ public class PostTests extends BaseTest {
     }
 
     @Test (groups = "create_post")
-    public void LTest_Edit_Post_FailBySecurity(){
+    public void KTest_Edit_Post_FailBySecurity(){
 
         Post testPost = new Post(DataHelper.generateRandomTitle(),DataHelper.generateRandomContent());
 
@@ -272,7 +262,7 @@ public class PostTests extends BaseTest {
     }
 
     @Test (groups = "create_post")
-    public void MTest_Delete_Post_success(){
+    public void LTest_Delete_Post_success(){
 
      //   Post testPost = new Post(DataHelper.generateRandomTitle(),DataHelper.generateRandomContent());
 
@@ -292,7 +282,7 @@ public class PostTests extends BaseTest {
     }
 
     @Test (groups = "create_post")
-    public void NTest_Delete_Post_Fails(){
+    public void MTest_Delete_Post_Fails(){
 
         //InvalidPost NotValidPost = new InvalidPost(DataHelper.generateRandomTitle(),DataHelper.generateRandomContent());
 
@@ -314,7 +304,7 @@ public class PostTests extends BaseTest {
     }
 
     @Test (groups = "create_post")
-    public void OTest_Delete_Post_FailBySecurity(){
+    public void NTest_Delete_Post_FailBySecurity(){
 
         Post testPost = new Post(DataHelper.generateRandomTitle(),DataHelper.generateRandomContent());
 

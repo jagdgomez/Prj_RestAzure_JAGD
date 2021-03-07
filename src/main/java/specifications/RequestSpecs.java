@@ -1,12 +1,16 @@
 package specifications;
 
 import helpers.RequestHelper;
+import io.restassured.RestAssured;
+import io.restassured.authentication.AuthenticationScheme;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 
+import static io.restassured.RestAssured.basic;
+
 public class RequestSpecs {
 
-    public static RequestSpecification generateToken() {
+      public static RequestSpecification generateToken() {
         RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder();
         String token = RequestHelper.GetUserToken();
         requestSpecBuilder.addHeader("Authorization","Bearer " + token);

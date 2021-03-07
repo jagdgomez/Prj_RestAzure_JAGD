@@ -61,7 +61,12 @@
 </tr>
 <tr>
 <td>&nbsp;</td>
-<td>NTest_Delete_Post_Fails</td>
+<td>KTest_Edit_Post_FailBySecurity</td>
+<td>create_post </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>JTest_Edit_Post_Fails</td>
 <td>create_post </td>
 </tr>
 <tr>
@@ -70,7 +75,7 @@
 <td>&nbsp;</td></tr>
 <tr>
 <td>&nbsp;</td>
-<td>MTest_Delete_Post_success</td>
+<td>ITest_Edit_Post_success</td>
 <td>create_post </td>
 </tr>
 <tr>
@@ -79,17 +84,12 @@
 <td>&nbsp;</td></tr>
 <tr>
 <td>&nbsp;</td>
-<td>KTest_Edit_Post_Fails</td>
-<td>create_post </td>
-</tr>
-<tr>
-<td>&nbsp;</td>
 <td>DTest_Show_Post_success</td>
 <td>create_post </td>
 </tr>
 <tr>
 <td>&nbsp;</td>
-<td>LTest_Edit_Post_FailBySecurity</td>
+<td>NTest_Delete_Post_FailBySecurity</td>
 <td>create_post </td>
 </tr>
 <tr>
@@ -103,32 +103,28 @@
 </tr>
 <tr>
 <td>&nbsp;</td>
+<td>MTest_Delete_Post_Fails</td>
+<td>create_post </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>LTest_Delete_Post_success</td>
+<td>create_post </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>HTest_ShowAll_Posts_FailBySecurity</td>
+<td>create_post </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
 <td>GTest_ShowAll_Posts_Success</td>
 <td>create_post </td>
 </tr>
 <tr>
 <td>&nbsp;</td>
-<td>ITest_ShowAll_Posts_FailBySecurity</td>
-<td>create_post </td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>JTest_Edit_Post_success</td>
-<td>create_post </td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>HTest_ShowAll_Posts_Fails</td>
-<td>&nbsp;</td></tr>
-<tr>
-<td>&nbsp;</td>
 <td>ETest_Show_Post_Fails</td>
 <td>&nbsp;</td></tr>
-<tr>
-<td>&nbsp;</td>
-<td>OTest_Delete_Post_FailBySecurity</td>
-<td>create_post </td>
-</tr>
 <tr>
 <td align='center' colspan='3'>@BeforeClass</td>
 </tr>
@@ -154,22 +150,42 @@
 <tr>
 <td>&nbsp;</td>
 <td>BTest_Create_Comment_Fails</td>
-<td>1Create_Post </td>
+<td>1SrcAndCreate_Post </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>ETest_ShowComment_Fail</td>
+<td>1SrcAndCreate_Post 2SrchAndCreate_Comment </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>FTest_ShowComment_FailbySecurity</td>
+<td>1SrcAndCreate_Post 2SrchAndCreate_Comment </td>
 </tr>
 <tr>
 <td>&nbsp;</td>
 <td>ATest_Create_Comment_success</td>
-<td>1Create_Post </td>
+<td>1SrcAndCreate_Post </td>
 </tr>
 <tr>
 <td>&nbsp;</td>
-<td>DTest_ShowPost_success</td>
-<td>1Create_Post 2Create_Comment </td>
+<td>DTest_ShowComment_success</td>
+<td>1SrcAndCreate_Post 2SrchAndCreate_Comment </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>GTest_ShowAllComments_success</td>
+<td>1SrcAndCreate_Post </td>
 </tr>
 <tr>
 <td>&nbsp;</td>
 <td>CTest_Create_Comment_FailbySecurity</td>
-<td>1Create_Post </td>
+<td>1SrcAndCreate_Post </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>HTest_ShowAllComments_SchemaValidation</td>
+<td>1SrcAndCreate_Post </td>
 </tr>
 <tr>
 <td align='center' colspan='3'>@BeforeClass</td>
