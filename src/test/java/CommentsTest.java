@@ -93,12 +93,7 @@ public class CommentsTest extends BaseTest {
             System.out.println ("Comment Name: " + DataHelper.generateRandomName());
             System.out.println ("Comment: " + DataHelper.generateRandomComment());
         }
-
     }
-
-
-
-
     @Test (groups="1SrcAndCreate_Post")
     public void ATest_Create_Comment_success(){
 
@@ -253,9 +248,7 @@ public class CommentsTest extends BaseTest {
 
     @Test (groups = {"1SrcAndCreate_Post","2SrcAndCreate_Comment"})
     public void JTest_Edit_Comment_success(){
-
         Comment testComment = new Comment(DataHelper.generateRandomName(),DataHelper.generateRandomComment());
-
         System.out.println("Generated New Name = "+ testComment.getName());
         System.out.println("Generated New Comment = "+ testComment.getComment());
         System.out.println("Edit Comment on Post #: " + resourcePath +"/" + createdPost.toString() + "/" + createdComment.toString());
@@ -273,9 +266,7 @@ public class CommentsTest extends BaseTest {
     }
     @Test (groups = {"1SrcAndCreate_Post","2SrcAndCreate_Comment"})
     public void KTest_Edit_Comment_Fails(){
-
         InvalidComment testComment = new InvalidComment(DataHelper.generateRandomName(),DataHelper.generateRandomComment());
-
         System.out.println("Generated New Comment Name = "+ testComment.getNames());
         System.out.println("Generated New Comment = "+ testComment.getComments());
         System.out.println("Request to: " + resourcePath);
@@ -294,9 +285,7 @@ public class CommentsTest extends BaseTest {
     }
     @Test (groups = {"1SrcAndCreate_Post","2SrcAndCreate_Comment"})
     public void LTest_Edit_Comment_FailbySecurity(){
-
         Comment testComment = new Comment(DataHelper.generateRandomName(),DataHelper.generateRandomComment());
-
         System.out.println("Generated New Name = "+ testComment.getName());
         System.out.println("Generated New Comment = "+ testComment.getComment());
         System.out.println("Edit Comment on Post #: " + resourcePath +"/" + createdPost.toString() + "/" + createdComment.toString());

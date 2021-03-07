@@ -127,14 +127,14 @@ public class PostTests extends BaseTest {
                 .statusCode(200)
                 .spec(ResponseSpecs.defaultSpec());
     }
-    @Test
+    @Test (groups = "create_post")
     public void ETest_Show_Post_Fails(){
 
-        System.out.println("Request to: " + resourcePath + "/" + createdPost);
+        System.out.println("Request to: " + resourcePath + "/" + (createdPost+1));
 
         given()
                 .spec(RequestSpecs.generateToken())
-                .get(resourcePath + "/" + "1")
+                .get(resourcePath + "/" + (createdPost+1))
                 .then()
                 .body("Message", equalTo("Post not found"))
                 .and()
@@ -284,14 +284,11 @@ public class PostTests extends BaseTest {
     @Test (groups = "create_post")
     public void MTest_Delete_Post_Fails(){
 
-        //InvalidPost NotValidPost = new InvalidPost(DataHelper.generateRandomTitle(),DataHelper.generateRandomContent());
-
         System.out.println("Edit PostID# "+ createdPost);
         System.out.println("Request to: " + resourcePath + "/" + createdPost);
 
         given()
                 .spec(RequestSpecs.generateToken())
-                //.body(NotValidPost)
                 .when()
                 .delete(resourcePath + "/" + (createdPost+1))
                 .then()
