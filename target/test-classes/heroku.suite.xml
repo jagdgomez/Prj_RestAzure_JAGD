@@ -8,9 +8,7 @@
         <classes>
             <class name="UserTests"></class>
         </classes>
-
     </test>
-
     <test name="MiscelaneosTest">
         <classes>
             <class name="MiscTests"></class>
